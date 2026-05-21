@@ -97,6 +97,7 @@ export default function FeedbackForm() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [role, setRole] = useState('')
+  const [otherRole, setOtherRole] = useState('')
   const [featureRatings, setFeatureRatings] = useState<Record<string, number>>({})
   const [preferredPages, setPreferredPages] = useState<string[]>([])
   const [willBuy, setWillBuy] = useState('')
@@ -143,6 +144,7 @@ export default function FeedbackForm() {
     if (!name.trim())                                         missing.push('Your Name')
     if (!email.trim())                                        missing.push('Email')
     if (!role)                                                missing.push('I am a...')
+    if (role === 'Other' && !otherRole.trim())               missing.push('Please specify your profession')
     if (FEATURES.some((f) => !featureRatings[f.key]))        missing.push('Feature ratings (rate all 7)')
     if (preferredPages.length === 0)                          missing.push('App pages (pick at least one)')
     if (!willBuy)                                             missing.push('Would you pay ₹350/month?')
@@ -163,7 +165,7 @@ export default function FeedbackForm() {
       await submitFeedback({
         name,
         email,
-        role,
+        role: role === 'Other' ? otherRole.trim() : role,
         feature_ratings: featureRatings,
         preferred_pages: preferredPages,
         will_buy: willBuy,
@@ -246,9 +248,24 @@ export default function FeedbackForm() {
             <FormField label="I am a..." required>
               <div className="flex flex-wrap gap-2 mt-1">
                 {ROLES.map((r) => (
-                  <ToggleChip key={r} label={r} selected={role === r} onClick={() => setRole(r)} />
+                  <ToggleChip
+                    key={r}
+                    label={r}
+                    selected={role === r}
+                    onClick={() => { setRole(r); if (r !== 'Other') setOtherRole('') }}
+                  />
                 ))}
               </div>
+              {role === 'Other' && (
+                <input
+                  type="text"
+                  placeholder="Tell us your profession..."
+                  value={otherRole}
+                  onChange={(e) => setOtherRole(e.target.value)}
+                  className={inputCls}
+                  style={{ boxShadow: 'var(--shadow-nc-inset)' }}
+                />
+              )}
             </FormField>
           </div>
 
