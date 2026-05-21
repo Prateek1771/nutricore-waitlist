@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Fonts ── */
+  --font-sans:  'Switzer',  system-ui, sans-serif;
+  --font-serif: 'Gambarino', Georgia, serif;
+
+  /* ── Backgrounds ── */
+  --color-nc-bg:           #F6F4EF;
+  --color-nc-surface:      #FEFCF8;
+  --color-nc-surface-deep: #F0EDE6;
+
+  /* ── Text ── */
+  --color-nc-text:           #1F1F1F;
+  --color-nc-text-secondary: #6B6B6B;
+  --color-nc-text-muted:     #A0A0A0;
+
+  /* ── Accent fills ── */
+  --color-nc-yellow:        #F5E6A3;
+  --color-nc-yellow-dark:   #EDD97A;
+  --color-nc-lavender:      #D9D4F0;
+  --color-nc-lavender-dark: #C4BCEB;
+  --color-nc-mint:          #C8EFD4;
+  --color-nc-mint-dark:     #A8E4BE;
+  --color-nc-peach:         #FDDBB8;
+  --color-nc-peach-dark:    #F8C898;
+  --color-nc-pink:          #F2CEDD;
+  --color-nc-pink-dark:     #EAB0CB;
+  --color-nc-sky:           #C5E0F5;
+  --color-nc-sky-dark:      #A9CDEC;
+
+  /* ── Semantic / brand ── */
+  --color-nc-streak: #FF8C42;
+  --color-nc-coral:  #F4845F;
+  --color-nc-dark:   #1F1F1F;
+  --color-nc-sidebar: #181818;
+
+  /* ── Border radius ── */
+  --radius-nc-sm: 0.75rem;
+  --radius-nc-md: 1rem;
+  --radius-nc-lg: 1.5rem;
+  --radius-nc-xl: 2rem;
+}
+
+:root {
+  --shadow-nc-card:     8px 8px 24px rgba(0,0,0,0.06), -4px -4px 16px rgba(255,255,255,0.7);
+  --shadow-nc-elevated: 12px 12px 32px rgba(0,0,0,0.08), -6px -6px 20px rgba(255,255,255,0.8);
+  --shadow-nc-subtle:   4px 4px 12px rgba(0,0,0,0.04), -2px -2px 8px rgba(255,255,255,0.6);
+  --shadow-nc-inset:    inset 4px 4px 10px rgba(0,0,0,0.05), inset -2px -2px 6px rgba(255,255,255,0.6);
+  --shadow-nc-inset-focus: inset 4px 4px 10px rgba(0,0,0,0.08), inset -2px -2px 6px rgba(255,255,255,0.8);
+}
+
+html {
+  /* scroll-behavior handled by Lenis */
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-nc-bg);
+  color: var(--color-nc-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ── Motion utilities ── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+.animate-fade-up   { animation: fade-up  0.45s cubic-bezier(0.32, 0.72, 0, 1) both; }
+.animate-fade-in   { animation: fade-in  0.35s ease both; }
+.animate-float     { animation: float    4s ease-in-out infinite; }
+
+.stagger-1 { animation-delay: 60ms;  }
+.stagger-2 { animation-delay: 120ms; }
+.stagger-3 { animation-delay: 180ms; }
+.stagger-4 { animation-delay: 240ms; }
+.stagger-5 { animation-delay: 300ms; }
+
+/* ── GSAP section reveal base state ── */
+.gs-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* Pre-hide all GSAP-animated elements so first paint matches the animation from-state.
+   Without this, React paints them visible, then GSAP snaps them to opacity:0 — causing jitter. */
+.problem-item,
+.problem-heading,
+.feature-card,
+.pricing-card,
+.page-card,
+.form-field {
+  opacity: 0;
+}
+
+/* Hide @firecms/neat watermark */
+a[data-n="1"] {
+  display: none !important;
+}
