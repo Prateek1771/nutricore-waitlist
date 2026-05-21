@@ -20,6 +20,7 @@ const mealItems = ['Oats + banana', 'Dal + 2 roti', 'Grilled paneer', 'Curd + sa
 export default function HeroSection() {
   const floatRef = useRef<HTMLDivElement>(null)
   const [waitlistCount, setWaitlistCount] = useState(1243)
+  const [entranceDone, setEntranceDone] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,7 +30,7 @@ export default function HeroSection() {
   }, [])
 
   useEffect(() => {
-    if (!floatRef.current) return
+    if (!entranceDone || !floatRef.current) return
     const cards = floatRef.current.querySelectorAll('.float-card')
     cards.forEach((card, i) => {
       gsap.to(card, {
@@ -41,7 +42,7 @@ export default function HeroSection() {
         delay: i * 0.3,
       })
     })
-  }, [])
+  }, [entranceDone])
 
   return (
     <section className="relative min-h-[100dvh] flex items-center overflow-hidden">
@@ -128,6 +129,7 @@ export default function HeroSection() {
           initial="hidden"
           animate="visible"
           variants={{ visible: { transition: { staggerChildren: 0.15, delayChildren: 0.4 } } }}
+          onAnimationComplete={() => setEntranceDone(true)}
         >
           {/* Meal Plan Card */}
           <motion.div variants={fadeUp} className="float-card absolute top-6 left-4 w-56 pointer-events-auto">
