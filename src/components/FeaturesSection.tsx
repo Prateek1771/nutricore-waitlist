@@ -24,14 +24,14 @@ const features: Feature[] = [
     Icon: Utensils,
     accent: 'yellow',
     title: 'Personalized Diet Plans',
-    body: '7-day Indian meal plans with calories and ₹ cost per meal. Dal, Idli, Ragi, Paneer — your culture, your macros.',
+    body: '7-day Indian meal plans with calories and ₹ cost per meal. Dal, idli, ragi, paneer — your culture, your macros.',
     span: 'col-span-12 md:col-span-7',
   },
   {
     Icon: Mic,
     accent: 'sky',
     title: 'Kannada & Hindi Voice Log',
-    body: 'Say "I had Ragi Mudde and Sambar" and our AI logs the exact macros instantly. No manual typing required.',
+    body: 'Say "I had ragi mudde and sambar" and our AI logs the exact macros instantly. No manual typing needed.',
     span: 'col-span-12 md:col-span-5',
   },
   {
@@ -45,7 +45,7 @@ const features: Feature[] = [
     Icon: Zap,
     accent: 'peach',
     title: 'Streaks & Cheat Meals',
-    body: 'Hit a 30-day streak, earn a guilt-free cheat meal. Our AI adjusts your weekly macros so you can eat pizza without ruining progress.',
+    body: 'Hit a 30-day streak, earn a guilt-free cheat meal. Our AI adjusts your weekly macros so you can enjoy pizza without losing progress.',
     span: 'col-span-12 md:col-span-5',
   },
   {
@@ -59,7 +59,7 @@ const features: Feature[] = [
     Icon: Dumbbell,
     accent: 'lavender',
     title: 'Fitness Plans',
-    body: 'Beginner-friendly home or gym routines matched to your fitness level and goals.',
+    body: 'Beginner-friendly home or gym routines matched to your fitness level and goals. GIF-style hints so you move safely.',
     span: 'col-span-12 md:col-span-4',
   },
   {
@@ -70,16 +70,6 @@ const features: Feature[] = [
     span: 'col-span-12 md:col-span-4',
   },
 ]
-
-gsap.registerPlugin(ScrollTrigger)
-
-interface Feature {
-  Icon: ElementType
-  accent: AccentColor
-  title: string
-  body: string
-  span: string
-}
 
 export default function FeaturesSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -117,7 +107,7 @@ export default function FeaturesSection() {
             Everything you need<br />to eat and move better
           </h2>
           <p className="mt-4 text-nc-text-secondary text-base leading-relaxed max-w-xl">
-            7 features designed around the real life of an Indian — budget meals, local food database, Swiggy integration, and AI that learns you.
+            7 features designed around the real life of an Indian — budget meals, local food, Swiggy integration, and AI that learns you.
           </p>
         </div>
 

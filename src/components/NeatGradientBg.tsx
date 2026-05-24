@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { NeatGradient } from '@firecms/neat'
+import type { NeatGradient as NeatGradientType } from '@firecms/neat'
 
 const GRADIENT_CONFIG = {
   colors: [
@@ -70,25 +70,23 @@ const GRADIENT_CONFIG = {
 
 export function NeatGradientBg() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const gradientRef = useRef<NeatGradient | null>(null)
+  const gradientRef = useRef<NeatGradientType | null>(null)
 
   useEffect(() => {
-    if (!canvasRef.current) return
-
-    gradientRef.current = new NeatGradient({
-      ref: canvasRef.current,
-      ...GRADIENT_CONFIG,
-    })
+    let cancelled = false
 
     const handleScroll = () => {
-      if (gradientRef.current) {
-        gradientRef.current.yOffset = window.scrollY
-      }
+      if (gradientRef.current) gradientRef.current.yOffset = window.scrollY
     }
-
     window.addEventListener('scroll', handleScroll, { passive: true })
 
+    import('@firecms/neat').then(({ NeatGradient }) => {
+      if (cancelled || !canvasRef.current) return
+      gradientRef.current = new NeatGradient({ ref: canvasRef.current, ...GRADIENT_CONFIG })
+    })
+
     return () => {
+      cancelled = true
       window.removeEventListener('scroll', handleScroll)
       gradientRef.current?.destroy()
     }

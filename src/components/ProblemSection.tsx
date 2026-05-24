@@ -11,7 +11,7 @@ const problems = [
   {
     num: '01',
     title: 'Eating out every day — no idea what\'s healthy',
-    body: 'Most Indians eat from Swiggy or dhabas regularly. No tool tells them which order actually fits their body goals.',
+    body: 'Most Indians eat from Swiggy or dhabas regularly. No app tells you which order actually fits your body goals.',
     accent: 'bg-nc-yellow',
   },
   {
@@ -29,7 +29,7 @@ const problems = [
   {
     num: '04',
     title: 'Logging food feels like a chore',
-    body: 'Text-based logging is tedious. People give up in 3 days. Photo + voice should make it effortless.',
+    body: 'Text-based logging is tedious. People quit in 3 days. Photo and voice should make it effortless.',
     accent: 'bg-nc-lavender',
   },
 ]

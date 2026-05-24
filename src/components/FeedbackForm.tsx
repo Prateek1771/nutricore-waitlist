@@ -26,11 +26,13 @@ const ROLES = ['Investor', 'Developer', 'Potential User', 'Other']
 function StarRating({ value, onChange }: { value: number; onChange: (v: number) => void }) {
   const [hover, setHover] = useState(0)
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-1" role="group" aria-label="Star rating">
       {[1, 2, 3, 4, 5].map((star) => (
         <button
           key={star}
           type="button"
+          aria-label={`Rate ${star} out of 5 stars`}
+          aria-pressed={value >= star}
           className="cursor-pointer transition-transform hover:scale-110 active:scale-95"
           onMouseEnter={() => setHover(star)}
           onMouseLeave={() => setHover(0)}
@@ -104,10 +106,6 @@ export default function FeedbackForm() {
   const [priceOpinion, setPriceOpinion] = useState('')
   const [preferredFeatures, setPreferredFeatures] = useState('')
   const [niceToHave, setNiceToHave] = useState('')
-  const [uiLiked, setUiLiked] = useState('')
-  const [uiImprovements, setUiImprovements] = useState('')
-  const [uiReferences, setUiReferences] = useState('')
-
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
 
@@ -147,14 +145,10 @@ export default function FeedbackForm() {
     if (role === 'Other' && !otherRole.trim())               missing.push('Please specify your profession')
     if (FEATURES.some((f) => !featureRatings[f.key]))        missing.push('Feature ratings (rate all 7)')
     if (preferredPages.length === 0)                          missing.push('App pages (pick at least one)')
-    if (!willBuy)                                             missing.push('Would you pay ₹350/month?')
+    if (!willBuy)                                             missing.push('Would you pay ₹299/month?')
     if (!priceOpinion.trim())                                 missing.push('Price that feels right')
     if (!preferredFeatures.trim())                            missing.push('Features that matter most')
     if (!niceToHave.trim())                                   missing.push('Nice-to-have features')
-    if (!uiLiked)                                             missing.push('Did you like the design?')
-    if (!uiImprovements.trim())                               missing.push('UI improvements')
-    if (!uiReferences.trim())                                 missing.push('Reference apps')
-
     if (missing.length > 0) {
       setErrorMsg('Please complete: ' + missing.join(', '))
       return
@@ -172,9 +166,6 @@ export default function FeedbackForm() {
         price_opinion: priceOpinion,
         preferred_features: preferredFeatures,
         nice_to_have: niceToHave,
-        ui_liked: uiLiked,
-        ui_improvements: uiImprovements,
-        ui_references: uiReferences,
       })
       setStatus('success')
     } catch (err: unknown) {
@@ -215,7 +206,7 @@ export default function FeedbackForm() {
             Help shape NutriCore
           </h2>
           <p className="mt-4 text-nc-text-secondary text-base leading-relaxed">
-            Your input directly refines the product. Takes 3 minutes — means everything to us.
+            Your input directly refines the product. Takes ~3 minutes — means everything to us.
           </p>
         </div>
 
@@ -227,7 +218,7 @@ export default function FeedbackForm() {
               <FormField label="Your Name" required>
                 <input
                   type="text"
-                  placeholder="Prateek Hitli"
+                  placeholder="Arjun Sharma"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className={inputCls}
@@ -272,7 +263,7 @@ export default function FeedbackForm() {
           {/* Q1 — Feature ratings */}
           <div className="form-field p-6 rounded-nc-xl border border-black/[0.06] bg-nc-surface/50 space-y-5">
             <h3 className="text-xs uppercase tracking-widest text-nc-text-muted font-medium">
-              1. Rate each feature (1 = Not interested, 5 = Must have) <span className="text-nc-coral">*</span>
+              1. How important are these features to you? (1 = Not interested, 5 = Must have) <span className="text-nc-coral">*</span>
             </h3>
             <div className="space-y-4">
               {FEATURES.map((f) => (
@@ -292,7 +283,7 @@ export default function FeedbackForm() {
           {/* Q2 — Preferred pages */}
           <div className="form-field p-6 rounded-nc-xl border border-black/[0.06] bg-nc-surface/50 space-y-4">
             <h3 className="text-xs uppercase tracking-widest text-nc-text-muted font-medium">
-              2. Which app pages excite you most? <span className="text-nc-coral">*</span>
+              2. Which app pages are most important to you? <span className="text-nc-coral">*</span>
             </h3>
             <div className="flex flex-wrap gap-2">
               {PAGES.map((p) => (
@@ -304,7 +295,7 @@ export default function FeedbackForm() {
           {/* Q3 — Pricing */}
           <div className="form-field p-6 rounded-nc-xl border border-black/[0.06] bg-nc-surface/50 space-y-4">
             <h3 className="text-xs uppercase tracking-widest text-nc-text-muted font-medium">
-              3. Would you pay ₹350/month for full access? <span className="text-nc-coral">*</span>
+              3. Would you pay ₹299/month for full access? <span className="text-nc-coral">*</span>
             </h3>
             <div className="flex gap-3 flex-wrap">
               {['Yes', 'No', 'Maybe'].map((opt) => (
@@ -337,7 +328,7 @@ export default function FeedbackForm() {
           {/* Q4 — Preferred features */}
           <div className="form-field p-6 rounded-nc-xl border border-black/[0.06] bg-nc-surface/50 space-y-4">
             <h3 className="text-xs uppercase tracking-widest text-nc-text-muted font-medium">
-              4. Which features matter most to you? <span className="text-nc-coral">*</span>
+              4. Which 2–3 features matter most to you? <span className="text-nc-coral">*</span>
             </h3>
             <textarea
               rows={3}
@@ -362,51 +353,6 @@ export default function FeedbackForm() {
               className={inputCls}
               style={{ boxShadow: 'var(--shadow-nc-inset)' }}
             />
-          </div>
-
-          {/* Q6 — UI Review */}
-          <div className="form-field p-6 rounded-nc-xl border border-black/[0.06] bg-nc-surface/50 space-y-5">
-            <h3 className="text-xs uppercase tracking-widest text-nc-text-muted font-medium">
-              6. UI & Design Review
-            </h3>
-            <FormField label="Did you like the visual design?" required>
-              <div className="flex gap-3 flex-wrap mt-1">
-                {['Yes', 'Not really', 'Needs work'].map((opt) => (
-                  <button
-                    key={opt}
-                    type="button"
-                    onClick={() => setUiLiked(opt.toLowerCase().replace(' ', '_'))}
-                    className={`px-4 py-2 rounded-full text-xs font-semibold border transition-all duration-200 cursor-pointer ${
-                      uiLiked === opt.toLowerCase().replace(' ', '_')
-                        ? 'bg-nc-dark text-white border-nc-dark'
-                        : 'bg-transparent border-black/15 text-nc-text-secondary hover:border-black/30'
-                    }`}
-                  >
-                    {opt}
-                  </button>
-                ))}
-              </div>
-            </FormField>
-            <FormField label="Any improvements or suggestions?" required>
-              <textarea
-                rows={3}
-                placeholder="e.g. The dashboard feels cluttered. I'd prefer a darker theme. The streak animation is great..."
-                value={uiImprovements}
-                onChange={(e) => setUiImprovements(e.target.value)}
-                className={inputCls}
-                style={{ boxShadow: 'var(--shadow-nc-inset)' }}
-              />
-            </FormField>
-            <FormField label="Reference apps or images you like" hint="Links, app names, or describe the vibe" required>
-              <textarea
-                rows={2}
-                placeholder="e.g. MyFitnessPal's logging UX, Zepto's speed, https://dribbble.com/..."
-                value={uiReferences}
-                onChange={(e) => setUiReferences(e.target.value)}
-                className={inputCls}
-                style={{ boxShadow: 'var(--shadow-nc-inset)' }}
-              />
-            </FormField>
           </div>
 
           {/* Error */}

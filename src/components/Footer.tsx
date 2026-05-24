@@ -11,7 +11,7 @@ export default function Footer() {
               <span className="font-semibold text-white text-base tracking-tight">NutriCore</span>
             </div>
             <p className="text-sm text-white/40 max-w-xs leading-relaxed">
-              AI-powered dietitian & trainer for India. Personalized meal plans, exercise routines, and Swiggy integration — all in one app.
+              AI‑powered assistant for diet and exercise in India. Personalized meal plans, exercise routines, and Swiggy‑friendly planning — all in one app.
             </p>
           </div>
 

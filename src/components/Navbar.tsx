@@ -32,7 +32,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2 group">
+        <a href="/" aria-label="NutriCore home" className="flex items-center gap-2 group">
           <span className="w-7 h-7 rounded-lg bg-nc-dark flex items-center justify-center transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110">
             <Leaf size={14} fill="currentColor" className="text-white transition-colors duration-300 group-hover:text-nc-mint" />
           </span>

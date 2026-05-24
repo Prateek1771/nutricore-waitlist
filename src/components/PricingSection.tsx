@@ -59,11 +59,10 @@ export default function PricingSection() {
         <div className="text-center mb-16">
           <NcEyebrow className="mb-4">Pricing</NcEyebrow>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-nc-text leading-[1.1] tracking-tight">
-            Less than one Swiggy order<br />
-            <span className="text-nc-text-secondary">per month</span>
+            Everything you need, in one monthly plan
           </h2>
           <p className="mt-4 text-nc-text-secondary text-base max-w-lg mx-auto">
-            Cheaper than a single dietitian session. NutriCore gives you full personalization every single day.
+            Pricing is simple and transparent. You choose the plan that fits your lifestyle and goals.
           </p>
         </div>
 
@@ -106,7 +105,7 @@ export default function PricingSection() {
                   <span className="px-2 py-0.5 rounded-full bg-nc-yellow text-nc-dark text-[10px] font-bold uppercase tracking-wide">Popular</span>
                 </div>
                 <div className="flex items-end gap-1 mb-1">
-                  <span className="font-serif text-4xl font-bold text-white">₹350</span>
+                  <span className="font-serif text-4xl font-bold text-white">₹299</span>
                   <span className="text-sm text-white/50 mb-1">/month</span>
                 </div>
                 <p className="text-xs text-white/40 mb-6">Full access, cancel anytime</p>
@@ -129,7 +128,7 @@ export default function PricingSection() {
             <NcCard padding="p-7" className="bg-white/40 backdrop-blur-md border border-white/60">
               <p className="text-xs uppercase tracking-widest text-nc-text-muted font-medium mb-1">Family</p>
               <div className="flex items-end gap-1 mb-1">
-                <span className="font-serif text-4xl font-bold text-nc-text">₹800</span>
+                <span className="font-serif text-4xl font-bold text-nc-text">₹799</span>
                 <span className="text-sm text-nc-text-muted mb-1">/month</span>
               </div>
               <p className="text-xs text-nc-text-muted mb-6">For you and up to 4 members</p>
@@ -139,7 +138,7 @@ export default function PricingSection() {
                   'Up to 5 individual profiles',
                   'Shared grocery lists',
                   'Family streak challenges',
-                  'Dedicated dietician support'
+                  'Dedicated dietitian support'
                 ].map((label) => (
                   <li key={label} className="flex items-center gap-3">
                     <span className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center bg-nc-lavender">

@@ -1,10 +1,10 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { NcEyebrow } from './ui/nc-badge'
 import { NcCard } from './ui/nc-card'
-import { Home, Utensils, Dumbbell, Book, Trophy, User } from 'lucide-react'
+import { Home, Utensils, Dumbbell, Book, Trophy, User, ImageOff } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -25,7 +25,7 @@ const pages = [
   },
   {
     name: 'Workout',
-    desc: 'Daily exercise plan with GIF demonstrations. Mark sets complete. Progressive overload built in.',
+    desc: 'Daily exercise plan with GIFs. Mark sets complete. Progressive overload built in.',
     img: '/illustrations/workout_iso.png',
     accent: 'bg-nc-peach',
     Icon: Dumbbell,
@@ -55,6 +55,7 @@ const pages = [
 
 export default function PagesSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const [brokenImages, setBrokenImages] = useState<Set<string>>(new Set())
 
   useGSAP(() => {
     const cards = sectionRef.current?.querySelectorAll('.page-card')
@@ -98,19 +99,22 @@ export default function PagesSection() {
               <NcCard padding="p-0" className="flex flex-col overflow-hidden">
                 {/* Image placeholder / illustration */}
                 <div className={`relative aspect-[4/3] w-full ${page.accent} overflow-hidden`}>
-                  <img
-                    src={page.img}
-                    alt={page.name}
-                    className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                    onError={(e) => {
-                      const t = e.currentTarget
-                      t.style.display = 'none'
-                      const parent = t.parentElement
-                      if (parent) {
-                        parent.innerHTML = `<div class="w-full h-full flex items-center justify-center"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-black/20"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>`
-                      }
-                    }}
-                  />
+                  {brokenImages.has(page.img) ? (
+                    <div className="w-full h-full flex items-center justify-center" aria-label={`${page.name} illustration unavailable`}>
+                      <ImageOff size={48} className="text-black/20" strokeWidth={1.5} />
+                    </div>
+                  ) : (
+                    <img
+                      src={page.img}
+                      alt={`NutriCore ${page.name} app screen`}
+                      width="800"
+                      height="600"
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      onError={() => setBrokenImages(prev => new Set(prev).add(page.img))}
+                    />
+                  )}
                 </div>
                 {/* Text */}
                 <div className="p-5">

@@ -1,0 +1,68 @@
+# NutriCore
+
+> AI-powered health coach for India — personalized diet plans, exercise routines, and Swiggy integration.
+
+NutriCore is a mobile app that helps Indians eat better and move more with AI-generated 7-day meal plans built around Indian food (dal, idli, ragi, paneer), Swiggy-compatible ordering, Hindi & Kannada voice logging, and a 15-day body check that auto-adjusts your plan.
+
+## Key facts
+
+- **Founded by**: Prateek Hitli
+- **Target market**: India — students, young professionals, budget-conscious users
+- **Launch**: MVP targeting Q3 2026
+- **Pricing**: Free (₹0) · Pro (₹299/month) · Family (₹799/month)
+- **Contact**: hello@nutricore.space
+- **Website**: https://nutricore.space
+- **Languages supported**: English, Hindi, Kannada
+
+## Core features
+
+- Personalized 7-day Indian meal plans (calories + ₹ cost per meal)
+- Hindi & Kannada voice food logging — say "I had ragi mudde and sambar" and macros are logged instantly
+- Food photo AI — snap a meal, log macros without typing
+- 1-tap Swiggy & Instamart integration — turn your weekly plan into a grocery cart or meal order
+- Streak rewards with guilt-free cheat meal unlock after 30-day streak
+- Beginner-friendly home/gym workout plans with GIF hints
+- 15-Day Body Check — auto-adjusts your plan every 15 days as your body changes
+- App pages: Dashboard, Food & Diet, Workout, Journal, Rewards, Profile
+
+## Pricing
+
+### Free — ₹0/month
+- Basic meal suggestions
+- Manual food logging
+- Step counter
+
+### Pro — ₹299/month
+- AI-generated personalized 7-day meal plan
+- AI exercise plan with GIF hints
+- Food photo & voice logging (Hindi + Kannada)
+- 1-tap Swiggy & Instamart integration
+- Streak rewards and community challenges
+- 15-Day Body Check and plan refresh
+- Priority support
+
+### Family — ₹799/month
+- Everything in Pro
+- Up to 5 user profiles
+- Shared grocery lists
+- Family streak challenges
+- Dedicated dietitian support
+
+## Why it exists
+
+Current nutrition apps are built for Western food and Western users. Indian food databases are missing or inaccurate. Professional dietitians cost ₹1,000–₹3,000/month — out of reach for most Indians. NutriCore closes this gap with affordable AI guidance built specifically for Indian diets, budgets, and habits.
+
+## Differentiation
+
+- **Indian food database**: Built from scratch for dal, idli, ragi, paneer, and thousands of Indian dishes — not adapted from a Western database
+- **Swiggy & Instamart integration**: The only health app that connects directly to India's largest food delivery and grocery platforms
+- **Voice logging in Indian languages**: Supports Hindi and Kannada out of the box — no English required for logging
+- **₹-aware meal planning**: Every meal plan includes per-meal cost in Indian Rupees so users can stay on budget
+- **15-Day Body Check**: Automated plan re-assessment every 15 days — no need to manually recalculate macros as weight or habits change
+- **Price**: At ₹299/month, NutriCore is 3–10x cheaper than a human dietitian (₹1,000–₹3,000/month)
+
+## Licensing
+
+Content on this page: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+AI training use: Permitted
+AI indexing and citation: Permitted

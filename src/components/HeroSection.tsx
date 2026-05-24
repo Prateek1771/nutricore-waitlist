@@ -64,7 +64,7 @@ export default function HeroSection() {
           variants={{ visible: { transition: { staggerChildren: 0.1, delayChildren: 0.22 } } }}
         >
           <motion.div variants={fadeUp}>
-            <NcEyebrow className="bg-white/60 backdrop-blur-sm text-nc-text-secondary shadow-sm">The ₹99 AI Dietitian — Pilot Waitlist</NcEyebrow>
+            <NcEyebrow className="bg-white/60 backdrop-blur-sm text-nc-text-secondary shadow-sm">Your AI‑powered health coach for India</NcEyebrow>
           </motion.div>
 
           <motion.h1
@@ -72,7 +72,7 @@ export default function HeroSection() {
             variants={fadeUp}
           >
             Your personal<br />
-            dietitian,{' '}
+            coach,{' '}
             <span style={{ color: '#4A4A4A' }}>
               building<br className="hidden md:block" /> a healthier you
             </span>
@@ -83,8 +83,9 @@ export default function HeroSection() {
             className="text-base md:text-[1.05rem] text-nc-text-secondary leading-relaxed max-w-[46ch]"
             variants={fadeUp}
           >
-            NutriCore gives every Indian a personalized 7-day meal plan, workout routine,
-            and Swiggy ordering guide. Join the waitlist today and lock in Lifetime Pro for just ₹99/month.
+            NutriCore helps every Indian eat better, move better, and stay consistent — with AI‑guided plans
+            that fit your budget, Swiggy‑style meals, and real‑life habits. Join the waitlist today and be the
+            first to experience NutriCore Premium.
           </motion.p>
 
           <motion.div className="flex items-center gap-3 flex-wrap" variants={fadeUp}>
@@ -118,7 +119,7 @@ export default function HeroSection() {
                 <span className="text-nc-streak">{waitlistCount.toLocaleString()}</span> already joined
               </p>
             </div>
-            <p className="text-xs text-nc-text-muted">MVP Q3 2026</p>
+            <p className="text-xs text-nc-text-muted">MVP launching Q3 2026</p>
           </motion.div>
         </motion.div>
 
