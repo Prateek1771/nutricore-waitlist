@@ -21,8 +21,6 @@ const FEATURES = [
 
 const PAGES = ['Dashboard', 'Food / Diet', 'Workout', 'Journal', 'Rewards', 'Profile']
 
-const ROLES = ['Investor', 'Developer', 'Potential User', 'Other']
-
 function StarRating({ value, onChange }: { value: number; onChange: (v: number) => void }) {
   const [hover, setHover] = useState(0)
   return (
