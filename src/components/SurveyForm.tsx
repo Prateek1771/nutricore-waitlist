@@ -93,13 +93,10 @@ const inputCls = `
   placeholder:text-nc-text-muted
 `
 
-export default function FeedbackForm() {
+export default function SurveyForm() {
   const sectionRef = useRef<HTMLElement>(null)
 
-  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [role, setRole] = useState('')
-  const [otherRole, setOtherRole] = useState('')
   const [featureRatings, setFeatureRatings] = useState<Record<string, number>>({})
   const [preferredPages, setPreferredPages] = useState<string[]>([])
   const [willBuy, setWillBuy] = useState('')
@@ -139,10 +136,7 @@ export default function FeedbackForm() {
     setErrorMsg('')
 
     const missing: string[] = []
-    if (!name.trim())                                         missing.push('Your Name')
     if (!email.trim())                                        missing.push('Email')
-    if (!role)                                                missing.push('I am a...')
-    if (role === 'Other' && !otherRole.trim())               missing.push('Please specify your profession')
     if (FEATURES.some((f) => !featureRatings[f.key]))        missing.push('Feature ratings (rate all 7)')
     if (preferredPages.length === 0)                          missing.push('App pages (pick at least one)')
     if (!willBuy)                                             missing.push('Would you pay ₹299/month?')
@@ -157,9 +151,9 @@ export default function FeedbackForm() {
     setStatus('loading')
     try {
       await submitFeedback({
-        name,
+        name: 'Survey User',
         email,
-        role: role === 'Other' ? otherRole.trim() : role,
+        role: 'Survey User',
         feature_ratings: featureRatings,
         preferred_pages: preferredPages,
         will_buy: willBuy,
@@ -183,7 +177,7 @@ export default function FeedbackForm() {
           </div>
           <div>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-nc-text mb-3">
-              {name ? `Thank you, ${name.split(' ')[0]}!` : 'Thank you!'}
+              Thank you!
             </h2>
             <p className="text-nc-text-secondary text-base leading-relaxed">
               Your response has been recorded and will directly shape NutriCore.
@@ -213,50 +207,16 @@ export default function FeedbackForm() {
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Identity */}
           <div className="form-field p-6 rounded-nc-xl border border-black/[0.06] bg-nc-surface/50 space-y-5">
-            <h3 className="text-xs uppercase tracking-widest text-nc-text-muted font-medium">About You</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField label="Your Name" required>
-                <input
-                  type="text"
-                  placeholder="Arjun Sharma"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className={inputCls}
-                  style={{ boxShadow: 'var(--shadow-nc-inset)' }}
-                />
-              </FormField>
-              <FormField label="Email" required>
-                <input
-                  type="email"
-                  placeholder="you@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className={inputCls}
-                  style={{ boxShadow: 'var(--shadow-nc-inset)' }}
-                />
-              </FormField>
-            </div>
-            <FormField label="I am a..." required>
-              <div className="flex flex-wrap gap-2 mt-1">
-                {ROLES.map((r) => (
-                  <ToggleChip
-                    key={r}
-                    label={r}
-                    selected={role === r}
-                    onClick={() => { setRole(r); if (r !== 'Other') setOtherRole('') }}
-                  />
-                ))}
-              </div>
-              {role === 'Other' && (
-                <input
-                  type="text"
-                  placeholder="Tell us your profession..."
-                  value={otherRole}
-                  onChange={(e) => setOtherRole(e.target.value)}
-                  className={inputCls}
-                  style={{ boxShadow: 'var(--shadow-nc-inset)' }}
-                />
-              )}
+            <h3 className="text-xs uppercase tracking-widest text-nc-text-muted font-medium">Link to your Waitlist</h3>
+            <FormField label="Email used for waitlist" required>
+              <input
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={inputCls}
+                style={{ boxShadow: 'var(--shadow-nc-inset)' }}
+              />
             </FormField>
           </div>
 
