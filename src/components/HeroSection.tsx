@@ -92,7 +92,7 @@ export default function HeroSection() {
             <NcButtonPrimary
               size="lg"
               trailingArrow
-              onClick={() => document.getElementById('feedback')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Join Waitlist
             </NcButtonPrimary>

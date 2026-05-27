@@ -150,7 +150,7 @@ export default function PricingSection() {
               </ul>
               <button
                 type="button"
-                onClick={() => document.getElementById('feedback')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })}
                 className="w-full py-3 rounded-full border-2 border-nc-dark text-sm font-semibold text-nc-dark hover:bg-nc-dark hover:text-white transition-colors"
               >
                 Join Waitlist

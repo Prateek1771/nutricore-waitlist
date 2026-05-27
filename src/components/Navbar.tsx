@@ -7,7 +7,7 @@ const NAV_LINKS = [
   { label: 'Features', href: '#features' },
   { label: 'App Pages', href: '#pages' },
   { label: 'Pricing', href: '#pricing' },
-  { label: 'Waitlist', href: '#feedback' },
+  { label: 'Waitlist', href: '#waitlist' },
 ]
 
 export default function Navbar() {
@@ -54,7 +54,7 @@ export default function Navbar() {
         </ul>
 
         {/* CTA */}
-        <NcButtonPrimary size="sm" onClick={() => document.getElementById('feedback')?.scrollIntoView({ behavior: 'smooth' })}>
+        <NcButtonPrimary size="sm" onClick={() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })}>
           Join Waitlist
         </NcButtonPrimary>
       </div>
